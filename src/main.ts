@@ -15,7 +15,8 @@ async function bootstrap() {
       transform: true,
     }),
   );
-
+  // Uncomment the following lines to enable CORS
+  // app.enableCors({
   // app.connectMicroservice<MicroserviceOptions>({
   //   transport: Transport.KAFKA,
   //   options: {
