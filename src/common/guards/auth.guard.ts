@@ -16,6 +16,10 @@ export class AuthGuard implements CanActivate {
     private readonly reflector: Reflector,
   ) {}
 
+  /**
+   * Verifies the presence and validity of JWT token.
+   * Also checks if user has required roles (if specified).
+   */
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const roles = this.reflector.get<string[]>(ROLES_KEY, context.getHandler());
 
@@ -28,7 +32,6 @@ export class AuthGuard implements CanActivate {
     }
 
     let decoded: any;
-
     try {
       decoded = await this.jwtService.verifyAsync(token);
       request.user = decoded;
@@ -36,6 +39,7 @@ export class AuthGuard implements CanActivate {
       throw new UnauthorizedException('Token inválido o expirado');
     }
 
+    // Check if user has the required role
     if (roles && !roles.some((role) => decoded.roles?.includes(role))) {
       throw new ForbiddenException('Rol no autorizado');
     }

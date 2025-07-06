@@ -7,6 +7,10 @@ import {
 } from 'class-validator';
 import { Role } from 'src/common/enums/rol.enum';
 
+/**
+ * DTO for creating a user.
+ * Validates email, password, name and optional role.
+ */
 export class CreateUserDto {
   @IsEmail()
   email: string;
