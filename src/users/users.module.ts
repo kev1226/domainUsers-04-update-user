@@ -5,9 +5,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { ClientsModule } from '@nestjs/microservices';
 import { kafkaClientConfig } from 'src/kafka/kafka-client.config';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    JwtModule.register({
+      secret: 'kalemat2025',
+    }),
     TypeOrmModule.forFeature([User]),
     ClientsModule.register(kafkaClientConfig),
   ],
