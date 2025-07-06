@@ -1,5 +1,16 @@
-import { IsString, IsEmail, MinLength } from 'class-validator';
+import {
+  IsString,
+  IsEmail,
+  MinLength,
+  IsOptional,
+  IsEnum,
+} from 'class-validator';
+import { Role } from 'src/common/enums/rol.enum';
 
+/**
+ * DTO for creating a user.
+ * Validates email, password, name and optional role.
+ */
 export class CreateUserDto {
   @IsEmail()
   email: string;
@@ -10,4 +21,8 @@ export class CreateUserDto {
 
   @IsString()
   name?: string;
+
+  @IsOptional()
+  @IsEnum(Role, { message: 'role must be either user or admin' })
+  role?: Role;
 }
