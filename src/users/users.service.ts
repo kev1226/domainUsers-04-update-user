@@ -13,8 +13,8 @@ import { firstValueFrom, timeout, TimeoutError } from 'rxjs';
 
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
-import { KafkaServices } from 'src/kafka/kafka-constants';
-import { KafkaTopics } from 'src/kafka/kafka-topics.enum';
+import { KafkaServices } from '../kafka/kafka-constants';
+import { KafkaTopics } from '../kafka/kafka-topics.enum';
 import * as bcryptjs from 'bcryptjs';
 
 @Injectable()
